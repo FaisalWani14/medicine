@@ -8,12 +8,13 @@ const creatNewUser = (req, res) => {
   }
 
   const userObj = new User({
-    id: req.body.id,
     username: req.body.username,
     password: req.body.password,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstname: req.body.name.split(" ")[0],
+    lastname: req.body.name.split(" ")[1],
     email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
   });
 
   User.create(userObj, (err, data) => {

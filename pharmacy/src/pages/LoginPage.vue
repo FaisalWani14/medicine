@@ -27,9 +27,16 @@
 <script>
 import { Notify } from "quasar";
 import { defineComponent } from "vue";
+import { useUserStore } from "../stores/userStore";
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "LoginPage",
+  setup() {
+    const store = useUserStore();
+    return {
+      store,
+    };
+  },
   data() {
     return {
       username: "",
@@ -53,18 +60,20 @@ export default defineComponent({
         .post("/auth/login", data)
         .then((res) => {
           if (res.status == 200) {
-            // console.log(res.data)
             Notify.create({
               type: "positive",
               message: "Login successfully.",
             });
-            // this.storeLogUser.userid = res.data.id;
-            // this.storeLogUser.fullname = res.data.fullname;
-            // this.storeLogUser.accessToken = res.data.accessToken;
-            this.$router.push("/");
+            this.store.username = res.data.Username;
+            this.store.name = res.data.First_Name + " " + res.data.Last_Name;
+            this.store.phone = res.data.Phone_Number;
+            this.store.address = res.data.Staff_Address;
+
+            this.$router.push("/set");
           }
         })
         .catch((err) => {
+          console.log(err);
           Notify.create({
             type: "negative",
             message: "Invalid Username or Password.",

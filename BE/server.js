@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 
 require("./router/user.routes")(app);
 require("./router/product.routes")(app);
+require("./router/order.routes")(app);
+require("./router/table.routes")(app);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

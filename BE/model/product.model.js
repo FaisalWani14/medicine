@@ -1,6 +1,6 @@
-const sql = require("../database/db");
+const sql = require("../db/db");
 
-const Product = function (user) {
+const Product = function (Product) {
   this.Product_Id = Product.Product_Id;
   this.Supplier_Id = Product.Supplier_Id;
   this.Product_Name = Product.Product_Name;
@@ -18,6 +18,25 @@ Product.getAll = (result) => {
     }
     result(null, res);
   });
+};
+
+Product.getCategory = (catergory, result) => {
+  sql.query(
+    "SELECT * FROM product WHERE Product_Category = '" + catergory + "'",
+    (err, res) => {
+      if (err) {
+        console.log("Query error: " + err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log("Found category: ", res);
+        result(null, res);
+        return;
+      }
+      result({ kind: "not_found" }, null);
+    }
+  );
 };
 
 module.exports = Product;

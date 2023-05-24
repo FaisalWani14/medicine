@@ -1,4 +1,4 @@
-const sql = require("../database/db");
+const sql = require("../db/db");
 
 const User = function (user) {
   this.Username = user.username;
@@ -6,6 +6,8 @@ const User = function (user) {
   this.First_Name = user.firstname;
   this.Last_Name = user.lastname;
   this.Email_Staff = user.email;
+  this.Phone_Number = user.phone;
+  this.Staff_Address = user.address;
 };
 
 User.create = (newUser, result) => {

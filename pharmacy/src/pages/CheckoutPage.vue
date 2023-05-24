@@ -1,0 +1,105 @@
+<template>
+  <div class="q-px-xl checkout">
+    <h1 class="text-h4">ใบเสร็จ</h1>
+    <div class="row text-left">
+      <p class="col-6">{{ userStore.username }} {{ userStore.phone }}</p>
+      <p class="col-3">Date: 2023-05-19</p>
+      <p class="col-3">เวลา: 06:05:55</p>
+    </div>
+    <div class="q-pa-md table">
+      <q-table
+        flat
+        bordered
+        :rows="rows"
+        :columns="columns"
+        row-key="name"
+        :hide-bottom="true"
+      />
+    </div>
+    <p>จัดส่งที่ {{ userStore.address }}</p>
+    <p>ค่าจัดส่ง 20</p>
+    <h1 class="text-h5">รวมทั้งสิ้น: {{ total }} บาท</h1>
+    <h1 class="text-h5">ดำเนินการชำระเงิน</h1>
+    <q-select v-model="payment" :options="options" label="Payment" filled />
+    <q-btn
+      class="q-my-md"
+      color="positive"
+      label="ยืนยัน"
+      @click="this.$router.push('/profile')"
+    />
+  </div>
+</template>
+
+<script>
+import { useUserStore } from "src/stores/userStore";
+const columns = [
+  {
+    name: "Bill_Number",
+    label: "รหัสเมนู",
+    field: "Bill_Number",
+  },
+  { name: "Product_Name", label: "รายการ", field: "Product_Name" },
+  {
+    name: "Product_Description",
+    label: "รายละเอียด",
+    field: "Product_Description",
+  },
+  { name: "Quantity", label: "จำนวน", field: "Quantity" },
+  { name: "Unit_Price", label: "ราคา", field: "Unit_Price" },
+  { name: "Discount", label: "ส่วนลด", field: "Discount" },
+  { name: "Total", label: "ยอดรวมสุทธิ", field: "Total" },
+];
+
+export default {
+  name: "CheckoutPage",
+  setup() {
+    const userStore = useUserStore();
+    return {
+      columns,
+      userStore,
+    };
+  },
+  data() {
+    return {
+      rows: [],
+      payment: "",
+      options: ["Prompay", "Cash", "Credit Card", "Debit Card"],
+      total: 0,
+    };
+  },
+  methods: {
+    async getOrders() {
+      await this.$api
+        .get("/order")
+        .then((res) => {
+          this.rows = res.data;
+          console.log(this.rows[0]);
+          this.total = parseInt(this.rows[0].Total);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  async mounted() {
+    await this.getOrders();
+  },
+};
+</script>
+
+<style lang="scss">
+.checkout {
+  background: #fff;
+  margin: 2rem;
+  padding: 1rem 2rem;
+}
+.table {
+  * {
+    text-align: left;
+  }
+}
+thead {
+  background: #cef3fc;
+  font-weight: bold;
+}
+</style>
