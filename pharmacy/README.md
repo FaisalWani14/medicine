@@ -1,41 +1,34 @@
-# Pharmacy (pharmacy)
+# Pharmacy
 
-Pharmacy website
+medicine folder container 4 things: BE(backend/nodejs), pharmacy(frontend/quasar-vue), warehouse_new.sql(database), README.md(instructions)
 
-## Install the dependencies
+## 1) Download the warehouse_new.sql and import into XAMPP and run XAMPP server
+
+## 2.1) Install the dependencies for BE folder
+
 ```bash
-yarn
-# or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## 2.1)Install the dependencies for pharmacy folder
+
 ```bash
-quasar dev
+npm install
+npm ci
 ```
 
+## 3.1)Start BE for calling APIs
 
-### Lint the files
 ```bash
-yarn lint
-# or
-npm run lint
+npm run dev
 ```
 
+## 3.2)Start pharmacy for calling APIs
 
-### Format the files
 ```bash
-yarn format
-# or
-npm run format
+npm run dev
 ```
 
+### GOOD LUCK MEOW MEOW
 
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+![Cat](https://myoctocat.com/assets/images/base-octocat.svg)
