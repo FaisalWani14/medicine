@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2023 at 10:05 AM
+-- Generation Time: May 25, 2023 at 03:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -255,7 +255,8 @@ INSERT INTO `staff` (`Staff_Id`, `First_Name`, `Last_Name`, `Email_Staff`, `User
 (2, 'Lucy', 'Groot', 'Lucy222@gmail.com', 'LucyGroot', '024684', NULL, NULL),
 (3, 'Pat', 'Turner', 'Pat245@hotmail.com', 'PatTurner', '584782', NULL, NULL),
 (4, 'admin', NULL, NULL, 'admin', 'admin', NULL, NULL),
-(5, 'JUAY', 'JAUY', 'j@j', 'JUAY', 'JUAY', 1234567890, 'phuket');
+(5, 'JUAY', 'JAUY', 'j@j', 'JUAY', 'JUAY', 1234567890, 'phuket'),
+(6, NULL, NULL, NULL, 'ca', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -357,31 +358,31 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `Customer_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Customer_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Order_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Order_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `Order_Detail_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Order_Detail_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `Bill_Number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Bill_Number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Product_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -393,7 +394,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `Supplier_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Supplier_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
