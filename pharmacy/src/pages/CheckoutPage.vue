@@ -21,12 +21,7 @@
     <h1 class="text-h5">รวมทั้งสิ้น: {{ cartStore.total }} บาท</h1>
     <h1 class="text-h5">ดำเนินการชำระเงิน</h1>
     <q-select v-model="payment" :options="options" label="Payment" filled />
-    <q-btn
-      class="q-my-md"
-      color="positive"
-      label="ยืนยัน"
-      @click="this.$router.push('/profile')"
-    />
+    <q-btn class="q-my-md" color="positive" label="ยืนยัน" @click="onConfirm" />
   </div>
 </template>
 
@@ -34,6 +29,7 @@
 import { useUserStore } from "src/stores/userStore";
 import { useCartStore } from "src/stores/cartStore";
 import { useProductStore } from "src/stores/productStore";
+import { Notify } from "quasar";
 const columns = [
   {
     name: "Bill_Number",
@@ -50,18 +46,20 @@ const columns = [
   { name: "Unit_Price", label: "ราคา", field: "Unit_Price" },
   { name: "Total", label: "ยอดรวมสุทธิ", field: "Total" },
 ];
-
+import { useOrderStore } from "src/stores/orderStore";
 export default {
   name: "CheckoutPage",
   setup() {
     const userStore = useUserStore();
     const cartStore = useCartStore();
     const productStore = useProductStore();
+    const orderStore = useOrderStore();
     return {
       columns,
       userStore,
       cartStore,
       productStore,
+      orderStore,
     };
   },
   data() {
@@ -85,6 +83,43 @@ export default {
           Total: item.cost,
         });
       });
+    },
+    onConfirm() {
+      Notify.create({
+        message: "Purchase completed",
+        type: "positive",
+      });
+      this.rows.map((row) => {
+        const data = {
+          newOrders: {
+            Customer_Id: 1,
+            Date_of_Order: new Date(),
+            Order_Detail: row.Product_Name,
+          },
+          newOrderDetails: {
+            Product_Id: row.Bill_Number,
+            Order_Id: this.orderStore.getOrderID(),
+            Bill_Number: this.orderStore.getBillID(),
+            Quantity: row.Quantity,
+            Unit_Price: row.Unit_Price,
+            Discount: 0,
+            Total: row.Total,
+            Date: new Date(),
+          },
+          newPayment: {
+            Payment_type: this.payment,
+          },
+        };
+        this.$api
+          .post("/order", data)
+          .then(() => {
+            this.cartStore.clearCart();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+      this.$router.push("/profile");
     },
   },
   async mounted() {

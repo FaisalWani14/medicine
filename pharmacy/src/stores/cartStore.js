@@ -60,5 +60,8 @@ export const useCartStore = defineStore("cartStore", {
         delete this.cartItem[id];
       }
     },
+    clearCart() {
+      this.cartItem = {};
+    },
   },
 });

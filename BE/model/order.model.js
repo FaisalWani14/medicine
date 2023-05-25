@@ -27,4 +27,46 @@ Order.getOrder = (result) => {
     }
   );
 };
+
+Order.create = (
+  newOrdersCol,
+  newOrdersRow,
+  newOrderDetailsCol,
+  newOrderDetailsRow,
+  newPaymentRow,
+  result
+) => {
+  const ordersQuery = `INSERT INTO \`orders\` (${newOrdersCol.map((c) => {
+    return `${c}`;
+  })}) VALUES (${newOrdersRow.map((d) => {
+    return `'${d}'`;
+  })});`;
+  const orderDetailsQuery = `INSERT INTO \`order_details\` (${newOrderDetailsCol.map(
+    (c) => {
+      return `${c}`;
+    }
+  )}) VALUES (${newOrderDetailsRow.map((d) => {
+    return `'${d}'`;
+  })});`;
+  const paymentQuery = `INSERT INTO \`payment\` (\`Payment_type\`) VALUES ('${newPaymentRow}');`;
+
+  const sqlQuery = `${ordersQuery} ${paymentQuery} ${orderDetailsQuery}`;
+  console.log(sqlQuery);
+
+  sql.query(sqlQuery, (err, res) => {
+    if (err) {
+      console.log("Query error: " + err);
+      result(err, null);
+      return;
+    }
+    console.log("Created order: ", {
+      res,
+    });
+
+    result(null, {
+      message: "INSERTED",
+    });
+  });
+};
+
 module.exports = Order;
