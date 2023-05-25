@@ -2,34 +2,23 @@
 
 medicine folder contains 4 things: BE(backend/nodejs), pharmacy(frontend/quasar-vue), warehouse_new.sql(database), README.md(instructions)
 
-## 1) Download the warehouse_new.sql and import into XAMPP and run XAMPP server
+## 1) Download the warehouse_new.sql and open XAMPP in localhost and delete previous warehouse database and create new database name "warehouse" and import warehouse_new.sql into "warehouse" database.
 
-## 2.1)Go into BE folder(cd command) and install the dependencies for BE folder
+## 2)Go into BE folder(cd command) and install the dependencies for BE folder and start server
 
 ```bash
 cd /medicine/BE
 npm install
+npm ci
+npm run dev
 ```
 
-## 2.2)Go into pharmacy folder(cd command) and install the dependencies for pharmacy folder
+## 2)Go into pharmacy folder(cd command) and install the dependencies for pharmacy folder and start server
 
 ```bash
 cd /medicine/pharmacy
 npm install
 npm ci
-```
-
-## 3.1)Go into BE folder and start BE for calling APIs
-
-```bash
-cd /medicine/BE
-npm run dev
-```
-
-## 3.2)Go into pharmacy folder and start quasar for frontend
-
-```bash
-cd /medicine/pharmacy
 npm run dev
 ```
 

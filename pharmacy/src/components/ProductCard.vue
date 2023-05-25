@@ -1,10 +1,7 @@
 <template>
   <div class="card">
     <div class="img">
-      <img
-        src="https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png"
-        alt=""
-      />
+      <img :src="product.Product_Img" alt="" />
     </div>
     <div class="text">
       <span class="title">
