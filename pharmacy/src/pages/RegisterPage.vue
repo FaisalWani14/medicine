@@ -1,6 +1,11 @@
 <template>
   <q-page class="flex flex-center" padding>
-    <form @submit.prevent="register" class="form" ref="myRegisterForm">
+    <form
+      @submit.prevent="register"
+      @reset.prevent="reset"
+      class="form"
+      ref="myRegisterForm"
+    >
       <div class="left">
         <q-input name="username" v-model="username" placeholder="Username" />
         <q-input
@@ -37,6 +42,7 @@
           placeholder="Phone Number"
         />
         <q-btn label="register" type="submit" color="primary" />
+        <q-btn label="reset" flat type="reset" color="primary" />
       </div>
     </form>
   </q-page>
@@ -63,6 +69,15 @@ export default {
     };
   },
   methods: {
+    reset() {
+      this.username = "";
+      this.password = "";
+      this.confirmPass = "";
+      this.name = "";
+      this.email = "";
+      this.phone = "";
+      this.address = "";
+    },
     register() {
       const data = {
         username: this.username,

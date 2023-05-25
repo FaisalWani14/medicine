@@ -37,7 +37,7 @@
         />
       </q-list>
       <q-list v-else>
-        <div v-for="link in essentialLinks" :key="link.title">
+        <div v-for="link in linksList" :key="link.title">
           <EssentialLink
             v-if="!link.needLogin"
             :key="link.title"

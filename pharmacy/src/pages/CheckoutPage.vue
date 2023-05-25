@@ -18,7 +18,7 @@
     </div>
     <p>จัดส่งที่ {{ userStore.address }}</p>
     <p>ค่าจัดส่ง 20</p>
-    <h1 class="text-h5">รวมทั้งสิ้น: {{ total }} บาท</h1>
+    <h1 class="text-h5">รวมทั้งสิ้น: {{ cartStore.total }} บาท</h1>
     <h1 class="text-h5">ดำเนินการชำระเงิน</h1>
     <q-select v-model="payment" :options="options" label="Payment" filled />
     <q-btn
@@ -32,6 +32,8 @@
 
 <script>
 import { useUserStore } from "src/stores/userStore";
+import { useCartStore } from "src/stores/cartStore";
+import { useProductStore } from "src/stores/productStore";
 const columns = [
   {
     name: "Bill_Number",
@@ -46,7 +48,6 @@ const columns = [
   },
   { name: "Quantity", label: "จำนวน", field: "Quantity" },
   { name: "Unit_Price", label: "ราคา", field: "Unit_Price" },
-  { name: "Discount", label: "ส่วนลด", field: "Discount" },
   { name: "Total", label: "ยอดรวมสุทธิ", field: "Total" },
 ];
 
@@ -54,9 +55,13 @@ export default {
   name: "CheckoutPage",
   setup() {
     const userStore = useUserStore();
+    const cartStore = useCartStore();
+    const productStore = useProductStore();
     return {
       columns,
       userStore,
+      cartStore,
+      productStore,
     };
   },
   data() {
@@ -64,21 +69,22 @@ export default {
       rows: [],
       payment: "",
       options: ["Prompay", "Cash", "Credit Card", "Debit Card"],
-      total: 0,
     };
   },
   methods: {
     async getOrders() {
-      await this.$api
-        .get("/order")
-        .then((res) => {
-          this.rows = res.data;
-          console.log(this.rows[0]);
-          this.total = parseInt(this.rows[0].Total);
-        })
-        .catch((err) => {
-          console.log(err);
+      Object.keys(this.cartStore.formattedProducts).forEach((i) => {
+        const item = this.cartStore.formattedProducts[i];
+        this.rows.push({
+          Bill_Number: item.id,
+          Product_Name: item.title,
+          Product_Description:
+            this.productStore.products[item.id].Product_Description,
+          Quantity: item.quantity,
+          Unit_Price: item.price,
+          Total: item.cost,
         });
+      });
     },
   },
   async mounted() {
