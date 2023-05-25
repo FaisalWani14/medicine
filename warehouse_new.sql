@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 08:01 PM
+-- Generation Time: May 25, 2023 at 10:05 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -81,7 +81,6 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Order_Id`, `Customer_Id`, `Date_of_Order`, `Order_Detail`) VALUES
-(0, 1, '0000-00-00', '1'),
 (1, 1, '2023-04-24', 'Aspirin'),
 (2, 2, '2023-05-02', 'Ibuprofen'),
 (3, 3, '2023-05-03', 'Acetaminophen'),
@@ -198,35 +197,36 @@ CREATE TABLE `product` (
   `Product_Unit` varchar(100) DEFAULT NULL,
   `Product_Price` decimal(65,2) DEFAULT NULL,
   `Product_Status` varchar(50) DEFAULT NULL,
-  `Product_Category` varchar(255) DEFAULT 'other'
+  `Product_Category` varchar(255) DEFAULT 'other',
+  `Product_Img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`Product_Id`, `Supplier_Id`, `Product_Name`, `Product_Description`, `Product_Unit`, `Product_Price`, `Product_Status`, `Product_Category`) VALUES
-(1, 1, 'Medicine A', 'Description of Medicine A', 'Bottle', '10.99', 'In Stock', 'medicine'),
-(2, 2, 'Medicine B', 'Description of Medicine B', 'Box', '5.99', 'In Stock', 'set'),
-(3, 3, 'Medicine C', 'Description of Medicine C', 'Pack', '7.50', 'Out of Stock', 'medicine'),
-(4, 4, 'Medicine D', 'Description of Medicine D', 'Bottle', '2.99', 'In Stock', 'medicine'),
-(5, 5, 'Medicine E', 'Description of Medicine E', 'Pack', '3.49', 'In Stock', 'medicine'),
-(6, 6, 'Medicine F', 'Description of Medicine F', 'Bottle', '10.99', 'In Stock', 'set'),
-(7, 7, 'Medicine G', 'Description of Medicine G', 'Box', '5.99', 'Out of Stock', 'medicine'),
-(8, 8, 'Medicine H', 'Description of Medicine H', 'Pack', '7.50', 'In Stock', 'other'),
-(9, 9, 'Medicine I', 'Description of Medicine I', 'Bottle', '2.99', 'In Stock', 'other'),
-(10, 10, 'Medicine J', 'Description of Medicine J', 'Pack', '3.49', 'In Stock', 'set'),
-(11, 1, 'Medicine K', 'Description of Medicine K', 'Bottle', '10.99', 'In Stock', 'other'),
-(12, 2, 'Medicine L', 'Description of Medicine L', 'Box', '5.99', 'Out of Stock', 'other'),
-(13, 3, 'Medicine M', 'Description of Medicine M', 'Pack', '7.50', 'In Stock', 'other'),
-(14, 4, 'Medicine N', 'Description of Medicine N', 'Bottle', '2.99', 'In Stock', 'promotion'),
-(15, 5, 'Medicine O', 'Description of Medicine O', 'Pack', '3.49', 'In Stock', 'set'),
-(16, 6, 'Medicine P', 'Description of Medicine P', 'Bottle', '10.99', 'In Stock', 'promotion'),
-(17, 7, 'Medicine Q', 'Description of Medicine Q', 'Box', '5.99', 'Out of Stock', 'promotion'),
-(18, 8, 'Medicine R', 'Description of Medicine R', 'Pack', '7.50', 'In Stock', 'promotion'),
-(19, 9, 'Medicine S', 'Description of Medicine S', 'Bottle', '2.99', 'In Stock', 'medicine'),
-(20, 10, 'Medicine T', 'Description of Medicine T', 'Pack', '3.49', 'In Stock', 'set'),
-(21, 1, 'test', 'test', '1', '1950.00', 'In Stock', 'promotion');
+INSERT INTO `product` (`Product_Id`, `Supplier_Id`, `Product_Name`, `Product_Description`, `Product_Unit`, `Product_Price`, `Product_Status`, `Product_Category`, `Product_Img`) VALUES
+(1, 1, 'Medicine A', 'Description of Medicine A', 'Bottle', '10.99', 'In Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(2, 2, 'Medicine B', 'Description of Medicine B', 'Box', '5.99', 'In Stock', 'set', 'https://img.rasset.ie/00072ba0-500.jpg'),
+(3, 3, 'Medicine C', 'Description of Medicine C', 'Pack', '7.50', 'Out of Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(4, 4, 'Medicine D', 'Description of Medicine D', 'Bottle', '2.99', 'In Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(5, 5, 'Medicine E', 'Description of Medicine E', 'Pack', '3.49', 'In Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(6, 6, 'Medicine F', 'Description of Medicine F', 'Bottle', '10.99', 'In Stock', 'set', 'https://img.rasset.ie/00072ba0-500.jpg'),
+(7, 7, 'Medicine G', 'Description of Medicine G', 'Box', '5.99', 'Out of Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(8, 8, 'Medicine H', 'Description of Medicine H', 'Pack', '7.50', 'In Stock', 'other', 'https://medicine.tufts.edu/sites/g/files/lrezom436/files/styles/large/public/tufts_feeds/news/220914_ask_expert_acetaminophin_lg.jpg?itok=CY-5HEaY'),
+(9, 9, 'Medicine I', 'Description of Medicine I', 'Bottle', '2.99', 'In Stock', 'other', 'https://medicine.tufts.edu/sites/g/files/lrezom436/files/styles/large/public/tufts_feeds/news/220914_ask_expert_acetaminophin_lg.jpg?itok=CY-5HEaY'),
+(10, 10, 'Medicine J', 'Description of Medicine J', 'Pack', '3.49', 'In Stock', 'set', 'https://img.rasset.ie/00072ba0-500.jpg'),
+(11, 1, 'Medicine K', 'Description of Medicine K', 'Bottle', '10.99', 'In Stock', 'other', 'https://medicine.tufts.edu/sites/g/files/lrezom436/files/styles/large/public/tufts_feeds/news/220914_ask_expert_acetaminophin_lg.jpg?itok=CY-5HEaY'),
+(12, 2, 'Medicine L', 'Description of Medicine L', 'Box', '5.99', 'Out of Stock', 'other', 'https://medicine.tufts.edu/sites/g/files/lrezom436/files/styles/large/public/tufts_feeds/news/220914_ask_expert_acetaminophin_lg.jpg?itok=CY-5HEaY'),
+(13, 3, 'Medicine M', 'Description of Medicine M', 'Pack', '7.50', 'In Stock', 'other', 'https://medicine.tufts.edu/sites/g/files/lrezom436/files/styles/large/public/tufts_feeds/news/220914_ask_expert_acetaminophin_lg.jpg?itok=CY-5HEaY'),
+(14, 4, 'Medicine N', 'Description of Medicine N', 'Bottle', '2.99', 'In Stock', 'promotion', 'https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-disinfection-cotton-swab-medicine-image_2246835.jpg'),
+(15, 5, 'Medicine O', 'Description of Medicine O', 'Pack', '3.49', 'In Stock', 'set', 'https://img.rasset.ie/00072ba0-500.jpg'),
+(16, 6, 'Medicine P', 'Description of Medicine P', 'Bottle', '10.99', 'In Stock', 'promotion', 'https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-disinfection-cotton-swab-medicine-image_2246835.jpg'),
+(17, 7, 'Medicine Q', 'Description of Medicine Q', 'Box', '5.99', 'Out of Stock', 'promotion', 'https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-disinfection-cotton-swab-medicine-image_2246835.jpg'),
+(18, 8, 'Medicine R', 'Description of Medicine R', 'Pack', '7.50', 'In Stock', 'promotion', 'https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-disinfection-cotton-swab-medicine-image_2246835.jpg'),
+(19, 9, 'Medicine S', 'Description of Medicine S', 'Bottle', '2.99', 'In Stock', 'medicine', 'https://www.imodium.com.au/sites/imodium_au/files/imodium-advanced-product-image.png'),
+(20, 10, 'Medicine T', 'Description of Medicine T', 'Pack', '3.49', 'In Stock', 'set', 'https://img.rasset.ie/00072ba0-500.jpg'),
+(21, 1, 'test', 'test', '1', '1950.00', 'In Stock', 'promotion', 'https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-disinfection-cotton-swab-medicine-image_2246835.jpg');
 
 -- --------------------------------------------------------
 
@@ -235,7 +235,7 @@ INSERT INTO `product` (`Product_Id`, `Supplier_Id`, `Product_Name`, `Product_Des
 --
 
 CREATE TABLE `staff` (
-  `Staff_Id` int(6) NOT NULL,
+  `Staff_Id` int(11) NOT NULL,
   `First_Name` varchar(50) DEFAULT NULL,
   `Last_Name` varchar(50) DEFAULT NULL,
   `Email_Staff` varchar(100) DEFAULT NULL,
@@ -254,7 +254,8 @@ INSERT INTO `staff` (`Staff_Id`, `First_Name`, `Last_Name`, `Email_Staff`, `User
 (1, ' Bob ', ' Smith ', 'Bob111@gmail.com', 'Bobsmith', '123456', NULL, NULL),
 (2, 'Lucy', 'Groot', 'Lucy222@gmail.com', 'LucyGroot', '024684', NULL, NULL),
 (3, 'Pat', 'Turner', 'Pat245@hotmail.com', 'PatTurner', '584782', NULL, NULL),
-(4, 'admin', NULL, NULL, 'admin', 'admin', NULL, NULL);
+(4, 'admin', NULL, NULL, 'admin', 'admin', NULL, NULL),
+(5, 'JUAY', 'JAUY', 'j@j', 'JUAY', 'JUAY', 1234567890, 'phuket');
 
 -- --------------------------------------------------------
 
@@ -356,43 +357,43 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `Customer_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Customer_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Order_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Order_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `Order_Detail_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Order_Detail_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `Bill_Number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Bill_Number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Product_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `Staff_Id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Staff_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `Supplier_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Supplier_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
